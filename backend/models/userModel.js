@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
-const jwt = require("jsonwebtoken");
 
 const Schema = mongoose.Schema;
 
@@ -38,10 +37,33 @@ userSchema.statics.signup = async function (email, password) {
     throw Error("Email is already registered.");
   }
 
+  // creation
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
   const user = await this.create({ email, password: hash });
+
+  return user;
+};
+
+// static login model
+userSchema.statics.login = async function (email, password) {
+  // validation
+  if (!email || !password) {
+    throw Error("All fields are required!");
+  }
+
+  const user = await this.findOne({ email });
+
+  if (!user) {
+    throw Error("Incorrect Email."); //use generic error for password and email in projects
+  }
+
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    throw Error("Incorrect Password."); //use generic error for password and email in projects
+  }
 
   return user;
 };
