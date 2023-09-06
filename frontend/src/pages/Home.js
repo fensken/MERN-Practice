@@ -9,7 +9,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const Home = () => {
 	const { workouts, dispatch } = useWorkoutsContext();
 	const { user } = useAuthContext();
-	console.log(user, "fasdfasdf");
 
 	useEffect(() => {
 		const fetchWorkouts = async () => {
