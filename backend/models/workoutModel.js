@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 
 const workoutSchema = new Schema(
 	{
+		workoutTitle: {
+			type: String,
+			required: true,
+		},
 		title: {
 			type: String,
 			required: true,
@@ -19,7 +23,7 @@ const workoutSchema = new Schema(
 		user_id: {
 			type: String,
 			require: true,
-		}
+		},
 	},
 	{ timestamps: true }
 );

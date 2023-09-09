@@ -31,11 +31,37 @@ const Home = () => {
 		return;
 	}, [dispatch, user]);
 
+	let bicepsAndShoulders;
+	let chest;
+
+	if (workouts) {
+		chest = workouts.filter((eachWorkout, index) => {
+			return eachWorkout.workoutTitle === "chest";
+		})
+
+		bicepsAndShoulders = workouts.filter((eachWorkout, index) => {
+			return eachWorkout.workoutTitle === "biceps-and-shoulders";
+		})
+
+	}
+
+
+
 	return (
 		<div className="home">
-			<div className="workouts">
-				{workouts &&
-					workouts.map((workout) => (
+			<div className="chest">
+			<h4 className="capitalize">Chest</h4>
+				
+				{chest &&
+					chest.map((workout) => (
+						<WorkoutDetails key={workout._id} workout={workout} />
+					))}
+			</div>
+			
+			<div className="biceps">
+			<h4 className="capitalize">Biceps and Shoulders</h4>
+				{bicepsAndShoulders &&
+					bicepsAndShoulders.map((workout) => (
 						<WorkoutDetails key={workout._id} workout={workout} />
 					))}
 			</div>

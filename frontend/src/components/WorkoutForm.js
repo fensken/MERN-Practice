@@ -6,6 +6,7 @@ const WorkoutForm = () => {
 	const { dispatch } = useWorkoutsContext();
 	const { user } = useAuthContext();
 
+	const [workoutTitle, setWorkoutTitle] = useState("chest");
 	const [title, setTitle] = useState("");
 	const [load, setLoad] = useState("");
 	const [reps, setReps] = useState("");
@@ -20,7 +21,9 @@ const WorkoutForm = () => {
 			return;
 		}
 
-		const workout = { title, load, reps };
+		console.log(workoutTitle);
+
+		const workout = { workoutTitle, title, load, reps };
 
 		const response = await fetch("/api/workouts", {
 			method: "POST",
@@ -40,6 +43,7 @@ const WorkoutForm = () => {
 			setTitle("");
 			setLoad("");
 			setReps("");
+			setWorkoutTitle("chest")
 			setError(null);
 			setEmptyFields([]);
 			console.log("new workout added", json);
@@ -50,6 +54,20 @@ const WorkoutForm = () => {
 	return (
 		<form className="create" onSubmit={handleSubmit}>
 			<h3>Add a New Workout</h3>
+
+			<label htmlFor="workout-options">Select a mooscles group:</label>
+			<select
+				name="Workout Plans"
+				id="workout-options"
+				onChange={(e) => setWorkoutTitle(e.target.value)}
+				className={`workout-options`}
+				value={workoutTitle}
+			>
+				<option value="chest">Chest</option>
+				<option value="biceps-and-shoulders">Biceps & Shoulders</option>
+				<option value="leg">Leg</option>
+				<option value="cardio">Cardio</option>
+			</select>
 
 			<label>Exercise Title:</label>
 			<input
