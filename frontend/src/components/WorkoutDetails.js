@@ -26,17 +26,10 @@ const WorkoutDetails = ({ workout }) => {
 		}
 	};
 
-	// const chest = workout.filter((index, eachWorkout) => {
-	// 	return eachWorkout.workoutTitle === "chest"
-	// })
-
-	// console.log(chest, "only chesttt")
-
 	return (
 		<div className="workout-details">
-			{/* <h4 className="capitalize">{workout.workoutTitle}</h4> */}
 			<p className="exercise-title">
-				Exercise:{" "}{workout.title}
+				{workout.title}
 			</p>
 			<p>
 				<strong>Load (kg): </strong>
