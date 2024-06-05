@@ -1,4 +1,4 @@
-# MERN-Practice
+# MERN - Practice
 
 App Screenshots:
 ![image](https://github.com/fensken/MERN-Practice/assets/57618183/3ad331a5-5b0d-4bb8-9243-9ac0954ae0e7)
